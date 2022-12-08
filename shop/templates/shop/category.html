@@ -4,7 +4,7 @@
 {% if category %}
 {{ category.description|truncatewords:155 }}
 {% else %}
-Welcome to the cushion store where you can buy electric and mountain bikes.
+Welcome to the bikes store where you can buy electric and mountain bikes.
 {% endif %}
 {% endblock %}
 {% block title %}
@@ -49,7 +49,7 @@ See Our Cushion Collection - Perfect Cushion Store
         {% for product in prods %}
         <div>
             <div>
-                <a class="img" href=""><img src="{{product.image.url}}" alt="{{product.name}}"></a>
+                <a class="img" href="{{product.get_absolute_url}}"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
                 <div>
                     <h4>{{product.name}}</h4>
                     <p>€{{product.price}}</p>
