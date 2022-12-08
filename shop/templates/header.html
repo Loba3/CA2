@@ -1,6 +1,7 @@
 {% load static %}
 <header>
     <div style="text-align: center;">
-        <img src="{% static 'images/logo.jpg' %}" alt="Online Bike Store">
+        <a href="{% url 'shop:all_products' %}">
+        <img src="{% static 'images/logo.jpg' %}" alt="Online Bike Store"></a>
     </div>
 </header>

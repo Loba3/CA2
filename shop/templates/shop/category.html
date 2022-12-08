@@ -4,53 +4,50 @@
 {% if category %}
 {{ category.description|truncatewords:155 }}
 {% else %}
-Welcome to the bikes store where you can buy electric and mountain bikes.
+Welcome to our bike store where you can buy fast and reliable bikes.
 {% endif %}
 {% endblock %}
 {% block title %}
 {% if category %}
-{{ category.name }} - Perfect Cushion Store
+{{ category.name }} - Bike Store
 {% else %}
-See Our Cushion Collection - Perfect Cushion Store
+See Our Bike Collection - Bike Store
 {% endif %}
 {% endblock %}
 {% block content %}
 <!--Breadcrumb navigation-->
 {% if category %}
-<div>
-    <div>
+<div class="row my_row_class">
+    <div class="mx-auto">
         <p><a href="{% url 'shop:all_products' %}">Our Product Collection</a> | {{category.name}}</p>
     </div>
 </div>
 {% endif %}
-<div>
+<div class="mx-auto">
     {% if category %}
-    <img src="{{category.image.url}}" alt="{{category.name}}">
+    <img class="my_image" src="{{category.image.url}}" alt="{{category.name}}">
 </div>
 <br>
-5
 <div>
-    <h1>{{category.name}}</h1>
-    <p>{{category.description}}</p>
+    <h1 class="text-center my_title">{{category.name}}</h1>
+    <p class="text-justify">{{category.description}}</p>
 </div>
 {% else %}
-<img src="{% static 'images/banner.jpg' %}" alt="Our Products Collection">
+<img class="my_image my_image_padding" src="{% static 'images/banner.jpg' %}" alt="Our Products Collection">
 </div>
 <br>
 <div>
-    <h1>Our Products Collection</h1>
-    <p>You'll find a full range of mountain bikes for tackling off-road trails and rough terrain. 
-        Our range covers everything from specialized hardtail mountain bikes perfect for cross-country, 
-        to electric mountain bikes for assistance up hills </p>
+    <h1 class="text-center my_title">Our Products Collection</h1>
+    <p class="text-justify">??????????????? ?????? ??????????? ??????????? ???????????????</p>
 </div>
 {% endif %}
-<div>
-    <div>
+<div class="container">
+    <div class="row mx-auto">
         {% for product in prods %}
-        <div>
-            <div>
-                <a class="img" href="{{product.get_absolute_url}}"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
-                <div>
+        <div class="my_bottom_margin col-9 col-lg-4 col-sm-12 col-md-4">
+            <div class="card text-center" style="min-width:18rem;">
+                <a class="img" href="{{product.get_absolute_url}}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}"></a>
+                <div class="card-body">
                     <h4>{{product.name}}</h4>
                     <p>€{{product.price}}</p>
                 </div>
@@ -58,7 +55,6 @@ See Our Cushion Collection - Perfect Cushion Store
         </div>
         {% endfor %}
     </div>
-
     <br>
 </div>
 {% endblock %}
