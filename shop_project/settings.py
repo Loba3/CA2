@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'cart',
     'stripe',
     'order',
+    # 3rd party
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +144,6 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # settings.py
 STRIPE_SECRET_KEY = 'sk_test_51M7cmVLu6vFnERoXNBHgP9HyjHSMEAEOAOiyDAVMSHPyDy7KjSuGULvAH3m8tKTkxbAQ3DXB4lwhw1ICfqR7LV6B007sWoJQKi'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51M7cmVLu6vFnERoXdyqhQ0VI1xH13zLJXUccGtPWK9rrDG2z1WQgEtfsGZFCMSNQBZBo2hUePE3Cf2VcLn4zVOLT00WJOz0OWj'
+
+LOGIN_REDIRECT_URL = 'shop:all_products'
+LOGOUT_REDIRECT_URL = 'shop:all_products'
