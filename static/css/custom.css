@@ -174,3 +174,12 @@
 	letter-spacing: .2em;
 	font-size: 12px;
 }
+
+.body {
+	background-color: #000;
+}
+
+.form-control:focus {
+	box-shadow: none;
+	border-color: black;
+}
