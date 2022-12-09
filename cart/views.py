@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from shop .models import Product
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
@@ -6,34 +6,30 @@ from django.conf import settings
 import stripe
 from order.models import Order, OrderItem
 
-
 def _cart_id(request):
     cart = request.session.session_key
     if not cart:
         cart = request.session.create()
     return cart
 
-
 def add_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
-        cart = Cart.objects.create(cart_id=_cart_id(request))
+        cart = Cart.objects.create(cart_id = _cart_id(request))
         cart.save()
     try:
-        cart_item = CartItem.objects.get(product=product, cart=cart)
+        cart_item=CartItem.objects.get(product=product, cart=cart)
         if cart_item.quantity < cart_item.product.stock:
             cart_item.quantity += 1
         cart_item.save()
     except CartItem.DoesNotExist:
-        cart_item = CartItem.objects.create(
-            product=product, quantity=1, cart=cart)
+        cart_item = CartItem.objects.create(product=product, quantity = 1, cart=cart)
         cart_item.save()
     return redirect('cart:cart_detail')
 
-
-def cart_detail(request, total=0, counter=0, cart_items=None):
+def cart_detail(request, total=0, counter=0, cart_items = None):
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart, active=True)
@@ -47,7 +43,7 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
     description = 'Online Shop - New Order'
     data_key = settings.STRIPE_PUBLISHABLE_KEY
 
-    if request.method == 'POST':
+    if request.method=='POST':
         print(request.POST)
         try:
             token = request.POST['stripeToken']
@@ -62,11 +58,11 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
             shippingCountry = request.POST['stripeShippingAddressCountryCode']
 
             customer = stripe.Customer.create(email=email,
-                                              source=token)
+                                            source=token)
             stripe.Charge.create(amount=stripe_total,
-                                 currency="eur",
-                                 description=description,
-                                 customer=customer.id)
+                                currency="eur",
+                                description=description,
+                                customer=customer.id)
 
             '''Creating the order'''
             try:
@@ -98,19 +94,19 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
                     order_item.delete()
                     '''The terminal will print this message when the order is saved'''
                     print('The order has been created')
-                return redirect ('shop:all_products')   
+                return redirect ('order:thanks', order_details.id)
             except ObjectDoesNotExist:
                 pass
 
         except stripe.error.CardError as e:
             return e
-    return render(request, 'cart.html', {'cart_items': cart_items, 'total': total, 'counter': counter,
-                                         'data_key': data_key, 'stripe_total': stripe_total,
-                                         'description': description})
 
+    return render(request, 'cart.html', {'cart_items':cart_items, 'total':total, 'counter':counter,
+                                        'data_key':data_key, 'stripe_total':stripe_total,
+                                        'description':description})
 
 def cart_remove(request, product_id):
-    cart = Cart.objects.get(cart_id=_cart_id(request))
+    cart= Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
     cart_item = CartItem.objects.get(product=product, cart=cart)
     if cart_item.quantity > 1:
@@ -119,7 +115,6 @@ def cart_remove(request, product_id):
     else:
         cart_item.delete()
     return redirect('cart:cart_detail')
-
 
 def full_remove(request, product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
