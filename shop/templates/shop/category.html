@@ -37,18 +37,18 @@ See Our Bike Collection - Bike Store
 </div>
 <br>
 <div>
-    <h1 class="text-center my_title">Our Products Collection</h1>
-    <p class="text-justify">??????????????? ?????? ??????????? ??????????? ???????????????</p>
+    <h1 class="text-center my_title text-white">Our Products Collection</h1>
+    <p class="text-justify"></p>
 </div>
 {% endif %}
-<div class="container">
+<div class="container  ">
     <div class="row mx-auto">
         {% for product in prods %}
-        <div class="my_bottom_margin col-9 col-lg-4 col-sm-12 col-md-4">
-            <div class="card text-center" style="min-width:18rem;">
+        <div class="my_bottom_margin col-9 col-lg-4 col-sm-12 col-md-4 ">
+            <div class="card text-center border border-danger border-3" style="min-width:18rem;">
                 <a class="img" href="{{product.get_absolute_url}}"><img class="card-img-top my_image"
                         src="{{product.image.url}}" alt="{{product.name}}"></a>
-                <div class="card-body">
+                <div class="card-body border-top border-dark">
                     <h4>{{product.name}}</h4>
                     <p>€{{product.price}}</p>
                 </div>
@@ -61,9 +61,7 @@ See Our Bike Collection - Bike Store
         <hr>
         <div class="text-center">
             {% for pg in prods.paginator.page_range %}
-            <a href="?page={{pg}}" class="btn btn-light btn-sm {%
-         if products.number == pg %}active{% endif
-         %}">{{pg}}</a>
+            <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %}active{% endif %}">{{pg}}</a>
             {% endfor %}
         </div>
         {% endif %}
