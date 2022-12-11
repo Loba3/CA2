@@ -9,13 +9,13 @@
 {% block content %}
     {% if not cart_items %}
         <div>
-            <div class="text-center">
+            <div class="text-center text-white">
                 <br>
-                <h1 class="text-center my_title">
+                <h1 class="text-center my_title text-white">
                     Your shopping cart is empty
                 </h1>
                 <br>
-                <p class="text-center">
+                <p class="text-center text-white">
                     Please click <a href="{% url 'shop:all_products' %}">here</a> to continue shopping.
                 </p>
             </div>
@@ -24,7 +24,7 @@
         <div>
             <div class="text-center">
                 <br>
-                <h1 class="text-center my_title">
+                <h1 class="text-center my_title text-primary">
                     Your shopping cart
                 </h1>
                 <br>
@@ -41,7 +41,7 @@
                         </tr>
                         
                     </thead>
-                    <tbody>
+                    <tbody class="text-white">
                         {% for cart_item in cart_items %}
                             <tr>
                                 <td>
@@ -91,28 +91,28 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-white">
                                 Please review your shopping cart items before proceeding with the order payment.
                             </td>
                         </tr>
 
                         {% if voucher %}
-                        <tr class="subtotal">
-                        <td>Total</td>
+                        <tr class="subtotal text-white">
+                        <td class="text-white">Total</td>
                         <td colspan="4"></td>
-                        <td class="num">€{{ total|floatformat:"2" }}</td>
+                        <td class="num text-white">€{{ total|floatformat:"2" }}</td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="text-white">
                             "{{ voucher.code }}" voucher
                             ({{ voucher.discount }}% off)
                             </td>
                             <td colspan="4"></td>
-                            <td class="num neg">
+                            <td class="num neg ">
                             - €{{ discount|floatformat:"2" }}
                             </td>
                         </tr>
-                        <tr class="total">
+                        <tr class="total text-white">
                             <td>Total</td>
                             <td colspan="4"></td>
                             <td class="num">
@@ -121,16 +121,16 @@
                         </tr>
                         {% else %}
                                 <tr class="total">
-                                    <td>Total</td>
+                                    <td class="text-white">Total</td>
                                     <td colspan="4"></td>
-                                    <td class="num">
+                                    <td class="num text-white">
                                         €{{ total|floatformat:"2" }}
                                     </td>
                                 </tr>
                                 {% endif %}
                             </tbody>
                         </table>
-                        <p>Apply a voucher:</p>
+                        <p class="text-white">Apply a voucher:</p>
                         <form action="{% url 'vouchers:apply' %}" method="post">
                             {{ voucher_apply_form }}
                             <input type="submit" value="Apply">

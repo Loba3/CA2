@@ -1,4 +1,4 @@
-/****Navbar****/
+/****Navbar decoration****/
 .nav-item {
     letter-spacing: .2em;
     font-size: 14px;
@@ -11,7 +11,7 @@
     text-transform: uppercase;
 }
 
-/****Footer****/
+/****Footer decoration****/
 .my_footer {
     background-color: #f8f9fa;
     height: 60px;
@@ -22,7 +22,7 @@
     font-size: 14px;
 }
 
-/****Category page****/
+/****Category page decoration****/
 .my_row_class {
     padding-top: 15px;
 }
@@ -38,7 +38,7 @@
     text-decoration: none;
 }
 
-/****Category page****/
+/****Category page decoration****/
 .my_image {
     width: 100%;
     height: auto;
@@ -64,7 +64,7 @@
     letter-spacing: .2em;
 }
 
-/****Product Page****/
+/****Product Page decoration****/
 .my_prod_row_class {
     padding-top: 15px;
     padding-bottom: 20px;
@@ -93,7 +93,7 @@
     padding-right: 20px;
 }
 
-/****Cart Page****/
+/****Cart Page decoration****/
 .my_custom_table {
 	min-width: 400px;
 	font-size: 14px;
@@ -120,7 +120,7 @@
 }
 
 
-/***Stripe Button***/
+/***Stripe Button decoration***/
 .stripe-button-el, .my_custom_button {
 	width: 100% !important;
 	display: block !important;

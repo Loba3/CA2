@@ -9,7 +9,7 @@
 {% block content %}
 <div class="row my_prod_row_class">
     <div class="mx-auto">
-        <p><a href="{% url 'shop:all_products' %}">Home</a> | <a href="{{product.category.get_url }}">{{product.category}}</a> |
+        <p class="text-white"><a class="text-white" href="{% url 'shop:all_products' %}">Home</a> | <a class="text-white" href="{{product.category.get_url }}">{{product.category}}</a> |
             {{product.name}}</p>
     </div>
     <div class="container">
@@ -17,10 +17,10 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center ">
                 <div style="min-width: 18rem;">
-                    <img class="rounded" src="{{product.image.url}}" alt="{{product.name}}">
+                    <img class="rounded border border-primary border-3 bg-white" src="{{product.image.url}}" alt="{{product.name}}">
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 px-4 pt-2 border bg-white rounded">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 px-4 pt-2 border border-primary border-3 bg-white rounded">
                 <div>
                     <h1 class="my_prod_title text-danger">{{product.name}}</h1>
                     <p class="text-black">€{{product.price}}</p>
